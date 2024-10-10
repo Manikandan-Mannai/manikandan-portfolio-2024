@@ -1,17 +1,15 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
-import "./LoadingAnimation.style.css"; // Ensure this file has the appropriate styles
+import "./LoadingAnimation.style.css";
 import Home from "../../pages/Home";
 
 const LoadingAnimation = () => {
-  const counter3Ref = useRef(null); // Using useRef for accessing DOM elements
-  const loadingScreenRef = useRef(null); // Ref for loading screen
+  const counter3Ref = useRef(null);
+  const loadingScreenRef = useRef(null);
 
-  // Function to create number elements for counter-3
   const createCounterElements = useCallback(() => {
     const counter3 = counter3Ref.current;
 
-    // Create num divs for counter-3
     for (let j = 0; j < 10; j++) {
       const div = document.createElement("div");
       div.className = "num";
@@ -25,15 +23,12 @@ const LoadingAnimation = () => {
     counter3.appendChild(finalDiv);
   }, []);
 
-  // Function to animate loaders and counters
   const animateLoadersAndCounters = useCallback(() => {
     const counter3 = counter3Ref.current;
 
-    // Set animation durations
-    const loaderDuration = 5; // Duration for loaders
-    const counterDuration = 5; // Duration for counters
+    const loaderDuration = 5;
+    const counterDuration = 5;
 
-    // Animate the loaders
     gsap.fromTo(
       ".loader-1",
       { width: 0 },
@@ -50,7 +45,6 @@ const LoadingAnimation = () => {
       }
     );
 
-    // Animate the counters
     const animateCounter = (counter, duration, delay = 0) => {
       const numHeight = counter.querySelector(".num").clientHeight;
       const totalDistance =
@@ -64,19 +58,16 @@ const LoadingAnimation = () => {
       });
     };
 
-    // Animate each counter
     animateCounter(counter3, counterDuration, 0);
     animateCounter(document.querySelector(".counter-2"), 6);
     animateCounter(document.querySelector(".counter-1"), 2, 4);
 
-    // Final animations
     gsap.to(".loader", {
       background: "none",
       delay: loaderDuration,
       duration: 0.1,
     });
 
-    // Loader transformations
     gsap.to(".loader-1", {
       rotate: 90,
       y: -50,
@@ -91,7 +82,6 @@ const LoadingAnimation = () => {
       delay: loaderDuration,
     });
 
-    // Scale and rotate the loader before fading out the loading screen
     gsap.to(".loader", {
       scale: 40,
       duration: 1,
@@ -108,17 +98,15 @@ const LoadingAnimation = () => {
       ease: "power2.inOut",
     });
 
-    // Fade out loading screen after all animations
     gsap.to(loadingScreenRef.current, {
       opacity: 0,
       duration: 0.5,
-      delay: loaderDuration + 1, // Fade out after everything is done
+      delay: loaderDuration + 1,
       ease: "power1.inOut",
     });
 
-    // Reveal website content with staggered effect
     gsap.to(".h1", {
-      delay: loaderDuration + 1, // Start after the loaders are done
+      delay: loaderDuration + 1,
       y: -80,
       ease: "power4.inOut",
       stagger: {
@@ -127,10 +115,9 @@ const LoadingAnimation = () => {
     });
   }, []);
 
-  // Using useEffect to handle animations when component mounts
   useEffect(() => {
     createCounterElements();
-    animateLoadersAndCounters(); // Call to animate loaders and counters
+    animateLoadersAndCounters();
   }, [createCounterElements, animateLoadersAndCounters]);
 
   return (
