@@ -1,8 +1,17 @@
 import React from "react";
-import Logo from "../components/Logo";
+import AboutMe from "../components/AboutMe";
+import HomeContent from "../components/HomeContent";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
-  return <Logo />;
+
+  return (
+    <>
+      <Navbar />
+      <HomeContent />
+      <AboutMe />
+    </>
+  );
 };
 
 export default Home;

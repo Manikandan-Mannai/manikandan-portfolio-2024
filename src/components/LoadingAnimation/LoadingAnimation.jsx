@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import "./LoadingAnimation.style.css";
-import Home from "../../pages/Home";
 
-const LoadingAnimation = () => {
+const LoadingAnimation = ({ onLoadingComplete }) => {
   const counter3Ref = useRef(null);
   const loadingScreenRef = useRef(null);
 
@@ -103,6 +102,7 @@ const LoadingAnimation = () => {
       duration: 0.5,
       delay: loaderDuration + 1,
       ease: "power1.inOut",
+      onComplete: onLoadingComplete, 
     });
 
     gsap.to(".h1", {
@@ -113,7 +113,7 @@ const LoadingAnimation = () => {
         amount: 0.1,
       },
     });
-  }, []);
+  }, [onLoadingComplete]);
 
   useEffect(() => {
     createCounterElements();
@@ -121,37 +121,34 @@ const LoadingAnimation = () => {
   }, [createCounterElements, animateLoadersAndCounters]);
 
   return (
-    <>
-      <Home />
-      <div className="loading-animation">
-        <div className="loading-screen" ref={loadingScreenRef}>
-          <div className="loader">
-            <div className="loader-1 bar"></div>
-            <div className="loader-2 bar"></div>
+    <div className="loading-animation">
+      <div className="loading-screen" ref={loadingScreenRef}>
+        <div className="loader">
+          <div className="loader-1 bar"></div>
+          <div className="loader-2 bar"></div>
+        </div>
+        <div className="counter">
+          <div className="counter-1 digit">
+            <div className="num">0</div>
+            <div className="num num-offset1">1</div>
           </div>
-          <div className="counter">
-            <div className="counter-1 digit">
-              <div className="num">0</div>
-              <div className="num num-offset1">1</div>
-            </div>
-            <div className="counter-2 digit">
-              <div className="num">0</div>
-              <div className="num num1">1</div>
-              <div className="num num-offset1">2</div>
-              <div className="num">3</div>
-              <div className="num">4</div>
-              <div className="num">5</div>
-              <div className="num">6</div>
-              <div className="num">7</div>
-              <div className="num">8</div>
-              <div className="num">9</div>
-              <div className="num">0</div>
-            </div>
-            <div className="counter-3 digit" ref={counter3Ref}></div>
+          <div className="counter-2 digit">
+            <div className="num">0</div>
+            <div className="num num1">1</div>
+            <div className="num num-offset1">2</div>
+            <div className="num">3</div>
+            <div className="num">4</div>
+            <div className="num">5</div>
+            <div className="num">6</div>
+            <div className="num">7</div>
+            <div className="num">8</div>
+            <div className="num">9</div>
+            <div className="num">0</div>
           </div>
+          <div className="counter-3 digit" ref={counter3Ref}></div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

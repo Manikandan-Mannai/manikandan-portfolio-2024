@@ -7,15 +7,13 @@
 html {
   scroll-behavior: smooth;
   width: 100vw;
-  height: 100vh;
+  cursor: none;
+  overflow-x: hidden;
 }
 
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  line-height: 1.6;
-  background-color: #fff;
-  color: #000;
 }
 
 h1,
@@ -41,6 +39,10 @@ a {
 
 a:hover {
   color: #0073e6;
+}
+
+.container{
+  padding: 2%;
 }
 
 @media (max-width: 768px) {

@@ -12,6 +12,7 @@ const Logo = () => {
 export default Logo;
 
 const H1 = styled.h1`
+  font-size: 2rem;
   position: relative;
   letter-spacing: -2px;
   -webkit-user-select: none;
