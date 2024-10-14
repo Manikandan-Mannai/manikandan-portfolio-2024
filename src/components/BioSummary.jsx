@@ -1,20 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import HTML from "../assets/images/HTML.svg";
-import CSS from "../assets/images/CSS.svg";
-import JS from "../assets/images/JS.svg";
-import ReactImage from "../assets/images/React.svg";
-import Node from "../assets/images/Node.svg";
-import MongoDB from "../assets/images/MongoDB.svg";
-import Java from "../assets/images/Java.svg";
-import Typescript from "../assets/images/typescript.svg";
-import Express from "../assets/images/express.svg";
-import Mysql from "../assets/images/mysql.svg";
-import SCSS from "../assets/images/SCSS.svg";
 import Bootstrap from "../assets/images/bootstrap.svg";
-import postman from "../assets/images/postman.svg";
+import CSS from "../assets/images/CSS.svg";
+import Express from "../assets/images/express.svg";
 import figma from "../assets/images/figma.svg";
 import git from "../assets/images/git.svg";
+import HTML from "../assets/images/HTML.svg";
+import Java from "../assets/images/Java.svg";
+import JS from "../assets/images/JS.svg";
+import MongoDB from "../assets/images/MongoDB.svg";
+import Node from "../assets/images/Node.svg";
+import postman from "../assets/images/postman.svg";
+import ReactImage from "../assets/images/React.svg";
+import SCSS from "../assets/images/SCSS.svg";
+import Typescript from "../assets/images/typescript.svg";
 
 const BioSummary = () => {
   return (
@@ -51,7 +50,7 @@ const BioSummary = () => {
           <img src={Node} alt="node js" />
           <img src={Express} alt="express" />
           <img src={MongoDB} alt="mongodb" />
-          <img src={Mysql} alt="mysql" />
+          <img src={Java} alt="Java" />
         </SvgContainer>
 
         <Title style={{ fontSize: "24px", marginTop: "2rem" }}>Tools</Title>
@@ -72,6 +71,10 @@ const Container = styled.div`
   padding: 2% 4%;
   text-align: center;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-items: center;
 `;
 
 const Content = styled.div`

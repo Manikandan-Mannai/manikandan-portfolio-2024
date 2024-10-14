@@ -4,6 +4,7 @@ import HomeContent from "../components/HomeContent";
 import Navbar from "../components/Navbar";
 import BioSummary from "../components/BioSummary";
 import { BackgroundColorProvider } from "../context/BackgroundColorContext";
+import Experience from "../components/Experience";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <HomeContent />
       <AboutMe />
       <BioSummary />
+      <Experience/>
     </BackgroundColorProvider>
   );
 };
