@@ -24,15 +24,13 @@ const CustomCursor = () => {
 export default CustomCursor;
 
 const CursorDot = styled.div`
-  position: absolute;
-  width: 10px;
-  height: 10px;
+  position: fixed;
+  width: 15px;
+  height: 15px;
   background-color: rgba(107, 114, 128, 0.2);
-  border: 2px solid #71717a;
+  border: 3px solid #71717a;
   border-radius: 100%;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
 `;
-
-

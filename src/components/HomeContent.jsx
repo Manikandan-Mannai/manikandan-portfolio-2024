@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useSmoothColorTransition from "../hooks/useSmoothColorTransition";
 import MouseScroll from "./Arrow";
+import { useBackgroundColor } from "../context/BackgroundColorContext";
 
 const HomeContent = () => {
+  const { resetColors } = useBackgroundColor(); // Use context to reset colors
   const [isScrolled, setIsScrolled] = useState(false);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    setIsScrolled(scrollPosition > 200);
+    if (scrollPosition >= 200 && scrollPosition <= 750) {
+      setIsScrolled(true); // Dark background
+    } else {
+      setIsScrolled(false); // White background
+    }
   };
 
   useEffect(() => {
@@ -24,10 +30,11 @@ const HomeContent = () => {
     };
   }, []);
 
-  const bgColor = "#FAFAF9";
-  const textColor = "#000";
+  useSmoothColorTransition(isScrolled, "#fff", "#000");
 
-  useSmoothColorTransition(isScrolled, bgColor, textColor);
+  useEffect(() => {
+    resetColors(); // Reset colors to white on mount
+  }, [resetColors]);
 
   return (
     <Wrapper className="global-container">
@@ -53,10 +60,10 @@ const HomeContent = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-arrow-right size-4"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-arrow-right size-4"
               >
                 <path d="M5 12h14"></path>
                 <path d="m12 5 7 7-7 7"></path>
@@ -75,8 +82,6 @@ const HomeContent = () => {
     </Wrapper>
   );
 };
-
-export default HomeContent;
 
 const Wrapper = styled.div`
   position: relative;
@@ -191,3 +196,5 @@ const Button = styled.button`
     }
   }
 `;
+
+export default HomeContent;

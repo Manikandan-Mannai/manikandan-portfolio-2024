@@ -1,35 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import useSmoothColorTransition from "../hooks/useSmoothColorTransition";
 
 const AboutMe = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  const handleScroll = () => {
-    const scrollPosition = window.scrollY;
-    setIsScrolled(scrollPosition > 200);
-  };
-
-  useEffect(() => {
-    const handleScrollDebounce = () => {
-      setTimeout(() => {
-        handleScroll();
-      }, 100);
-    };
-
-    window.addEventListener("scroll", handleScrollDebounce);
-
-    return () => {
-      window.removeEventListener("scroll", handleScrollDebounce);
-    };
-  }, []);
-
-  const bgColor = "#fff"; // Default background color
-  const textColor = "#000"; // Default text color
-
-  // Use the custom hook for smooth color transition
-  useSmoothColorTransition(isScrolled, bgColor, textColor);
-
   return (
     <Container className="global-container">
       <Text>
@@ -44,6 +16,8 @@ const AboutMe = () => {
 };
 
 const Container = styled.div`
+  position: relative;
+  height: 100%;
   padding: 2% 4%;
   text-align: center;
   display: flex;
