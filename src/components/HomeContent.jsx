@@ -11,14 +11,14 @@ const HomeContent = () => {
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
     console.log(scrollPosition);
-     if (
-       (scrollPosition >= 200 && scrollPosition <= 900) ||
-       scrollPosition >= 2100
-     ) {
-       setIsScrolled(true); // Dark background
-     } else {
-       setIsScrolled(false); // White background
-     }
+    if (
+      (scrollPosition >= 200 && scrollPosition <= 900) ||
+      (scrollPosition >= 2100 && scrollPosition < 4200)
+    ) {
+      setIsScrolled(true); // Dark background
+    } else {
+      setIsScrolled(false); // White background
+    }
   };
 
   useEffect(() => {

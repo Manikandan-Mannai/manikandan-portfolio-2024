@@ -16,7 +16,7 @@ const Navbar = () => {
         <NavLink href="#projects">
           Projects <Underline />
         </NavLink>
-        <NavLink href="#contact">Let's Talk</NavLink>
+        <Button href="#contact">Let's Talk</Button>
       </NavLinks>
     </Nav>
   );
@@ -44,7 +44,8 @@ const NavLink = styled.a`
   font-size: 1.1rem;
   font-weight: 500;
   padding-bottom: 0.2rem;
-  /* color: #333; */
+  display: flex;
+  align-items: center;
   transition: color 0.3s ease-in-out;
   cursor: pointer; 
 
@@ -66,4 +67,64 @@ const Underline = styled.span`
   background-color: #000;
   border-radius: 9999px;
   transition: width 0.3s ease-in-out;
+`;
+
+const Button = styled.button`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #fff;
+  color: black;
+  border: 2px solid black;
+  position: relative;
+  overflow: hidden;
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  border-radius: 0;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 5px 5px 0px 0px rgba(35, 34, 34, 1);
+  cursor: pointer;
+  font-weight: bold;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+  }
+
+  &:hover::before {
+    transform: translateX(100%);
+  }
+
+  &:hover {
+    color: white;
+    box-shadow: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    ring: 2px solid #232222;
+    ring-offset: 2px;
+  }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
 `;

@@ -7,6 +7,7 @@ import BioSummary from "../components/BioSummary";
 import { BackgroundColorProvider } from "../context/BackgroundColorContext";
 import Experience from "../components/Experience";
 import Services from "../components/Services";
+import Contact from "../components/Contact";
 
 const Home = () => {
   return (
@@ -15,9 +16,10 @@ const Home = () => {
       <HomeContent />
       <AboutMe />
       <BioSummary />
-      <Experience/>
-      <Project/>
-      <Services/>
+      <Experience />
+      <Project />
+      <Services />
+      <Contact />
     </BackgroundColorProvider>
   );
 };
