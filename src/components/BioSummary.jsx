@@ -15,6 +15,7 @@ import ReactImage from "../assets/images/React.svg";
 import SCSS from "../assets/images/SCSS.svg";
 import Typescript from "../assets/images/typescript.svg";
 
+
 const BioSummary = () => {
   return (
     <Container className="global-container">

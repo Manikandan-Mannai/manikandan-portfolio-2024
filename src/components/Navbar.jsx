@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Navbar = () => {
   return (
-    <Nav>
+    <Nav className="global-container">
       <Logo />
       <NavLinks>
         <NavLink href="#about">
@@ -29,7 +29,7 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #fff;
+  /* background-color: #fff; */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
@@ -44,7 +44,7 @@ const NavLink = styled.a`
   font-size: 1.1rem;
   font-weight: 500;
   padding-bottom: 0.2rem;
-  color: #333;
+  /* color: #333; */
   transition: color 0.3s ease-in-out;
   cursor: pointer; 
 

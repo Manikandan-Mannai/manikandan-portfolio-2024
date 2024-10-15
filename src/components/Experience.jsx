@@ -4,7 +4,7 @@ import { experiences } from "../constant";
 
 const Experience = () => {
   return (
-    <Container>
+    <Container className="global-container">
       <Content>
         <Title>Current Journey</Title>
         <Description>
@@ -20,10 +20,13 @@ const Experience = () => {
                 key={exp.id}
                 data-aos={index % 2 === 0 ? "fade-right" : "fade-up"}
               >
-                <Card>
+                <Card className="animated-border">
                   <h1 className="role">{exp.role}</h1>
                   <p className="designation">
-                    At <a href={exp.url} target="blank">{exp.company}</a>
+                    At{" "}
+                    <a href={exp.url} target="blank">
+                      {exp.company}
+                    </a>
                   </p>
                   <p className="date">{exp.date}</p>
                 </Card>
@@ -143,12 +146,12 @@ const PingCircle = styled.span`
 
 const Card = styled.div`
   background-color: rgba(255, 255, 255, 1);
-  border: 2px solid black !important;
   color: #000;
   padding: 1rem 2rem;
   width: 22rem;
   text-align: left;
   border-radius: 4px;
+  /* border: 2px solid black !important; */
   box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 0.75);
 
   h1 {
