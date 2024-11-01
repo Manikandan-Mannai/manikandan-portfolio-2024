@@ -74,6 +74,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: auto;
 `;
 
 const Content = styled.div`
@@ -81,8 +82,7 @@ const Content = styled.div`
   margin: auto;
 
   @media (max-width: 768px) {
-    width: 90%;
-    padding: 4%;
+    width: 100%;
     text-align: justify;
   }
 `;

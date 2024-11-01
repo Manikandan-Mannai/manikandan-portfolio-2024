@@ -144,6 +144,7 @@ const ProjectName = styled.h1`
 
 const ProjectContent = styled.div`
   cursor: pointer;
+
   @media (max-width: 768px) {
     margin: 4% 0;
   }
@@ -158,6 +159,7 @@ const Tag = styled.div`
   @media (max-width: 768px) {
     padding: 8px 12px;
     margin: 0;
+    font-size: 12px;
   }
 `;
 

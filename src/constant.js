@@ -137,7 +137,7 @@ export const services = [
     icon: FaSearch,
     color: "#F44336",
   },
- 
+
   {
     id: 7,
     title: "Digital Marketing",
@@ -146,5 +146,4 @@ export const services = [
     icon: FaBullhorn,
     color: "#FFEB3B",
   },
- 
 ];

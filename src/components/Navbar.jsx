@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Logo from "../components/Logo";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
+  const [isDelayed, setIsDelayed] = useState(false);
 
   const checkScreenSize = () => {
     if (window.innerWidth <= 768) {
@@ -27,47 +30,46 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
     if (!isOpen) {
+      setIsOpen(true);
       setTimeout(() => {
-        setIsRendered(true);
-      }, 300);
+        setIsDelayed(true); // Set delayed visibility
+      }, 800); // Delay in milliseconds
     } else {
-      setIsRendered(false);
+      setIsDelayed(false);
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 800); // Same delay to hide
     }
   };
 
   return (
     <Nav className="global-container">
       <Logo />
-
       {isMobile && (
         <HamburgerButton
           onClick={toggleMenu}
           className={isOpen ? "active" : ""}
         >
-          <svg viewBox="0 0 100 100" width="40">
-            <path className="line top" d="m 30,33 h 40" />
-            <path className="line middle" d="m 30,50 h 40" />
-            <path className="line bottom" d="m 30,67 h 40" />
-          </svg>
+          {isOpen && isDelayed ? (
+            <CloseIcon className="icon" />
+          ) : (
+            <MenuIcon className="icon" />
+          )}
         </HamburgerButton>
       )}
 
       {isMobile ? (
-        isOpen &&
-        isRendered && (
-          <MobileNavLinks>
-            <NavLink href="#about">About</NavLink>
-            <NavLink href="#skills">Skills</NavLink>
-            <NavLink href="#projects">Projects</NavLink>
-            <Button href="#contact">Let's Talk</Button>
-          </MobileNavLinks>
-        )
+        <MobileNavLinks isOpen={isOpen} isDelayed={isDelayed}>
+          <NavLink href="#about">About</NavLink>
+          <NavLink href="#skills">Skills</NavLink>
+          <NavLink href="#projects">Projects</NavLink>
+          <Button href="#contact">Let's Talk</Button>
+        </MobileNavLinks>
       ) : (
         <DesktopNavLinks>
           <NavLink href="#about">
-            About <Underline />{" "}
+            About <Underline />
           </NavLink>
           <NavLink href="#skills">
             Skills <Underline />
@@ -80,7 +82,6 @@ const Navbar = () => {
           </Button>
         </DesktopNavLinks>
       )}
-
       <BackgroundCircle className={isOpen ? "open" : ""} />
     </Nav>
   );
@@ -97,7 +98,12 @@ const Nav = styled.nav`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
-const MobileNavLinks = styled.div`
+const MobileNavLinks = styled.div.attrs(({ isDelayed }) => ({
+  style: {
+    opacity: isDelayed ? 1 : 0,
+    visibility: isDelayed ? "visible" : "hidden",
+  },
+}))`
   position: absolute;
   top: 100%;
   left: 0;
@@ -106,12 +112,14 @@ const MobileNavLinks = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 999;
 
   a {
     padding: 0.5rem;
     text-decoration: none;
     font-size: 1.2rem;
+    color: #fff;
   }
 `;
 
@@ -126,6 +134,7 @@ const DesktopNavLinks = styled.div`
 `;
 
 const NavLink = styled.a`
+  z-index: 999;
   position: relative;
   text-decoration: none;
   font-size: 1.1rem;
@@ -134,7 +143,7 @@ const NavLink = styled.a`
   cursor: pointer;
   display: flex;
   align-items: center;
-
+  z-index: 999 !important;
   &:hover {
     color: #000;
   }
@@ -224,47 +233,15 @@ const HamburgerButton = styled.button`
   z-index: 20;
   display: none;
 
-  svg {
+  .icon {
     width: 40px;
     height: 40px;
+    color: #000;
+    transition: color 0.3s ease;
   }
 
-  .line {
-    fill: none;
-    stroke: #000;
-    stroke-width: 5.5;
-    stroke-linecap: round;
-  }
-
-  .top {
-    stroke-dasharray: 40 139;
-  }
-
-  .middle {
-    stroke-dasharray: 40 139;
-  }
-
-  .bottom {
-    stroke-dasharray: 20 180;
-    stroke-dashoffset: -20px;
-  }
-
-  &.active {
-    transform: rotate(45deg);
-
-    .line {
-      stroke: #fff !important;
-    }
-
-    .top {
-      stroke: #fff;
-      stroke-dashoffset: -98px;
-    }
-
-    .bottom {
-      stroke: #fff;
-      stroke-dashoffset: -138px;
-    }
+  &.active .icon {
+    color: #fff;
   }
 
   @media (max-width: 768px) {
@@ -274,6 +251,69 @@ const HamburgerButton = styled.button`
     right: 1rem;
   }
 `;
+
+// const HamburgerButton = styled.button`
+//   background: none;
+//   border: none;
+//   cursor: pointer;
+//   padding: 0;
+//   z-index: 20;
+//   display: none;
+
+//   svg {
+//     width: 40px;
+//     height: 40px;
+//   }
+
+//   .line {
+//     fill: none;
+//     stroke: #000;
+//     stroke-width: 5.5;
+//     stroke-linecap: round;
+//   }
+
+//   .top {
+//     stroke-dasharray: 40 139;
+//   }
+
+//   .middle {
+//     stroke-dasharray: 40 139;
+//   }
+
+//   .bottom {
+//     stroke-dasharray: 20 180;
+//     stroke-dashoffset: -20px;
+//   }
+
+//   .hide {
+//     display: none;
+//   }
+
+//   &.active {
+//     transform: rotate(45deg);
+
+//     .line {
+//       stroke: #fff !important;
+//     }
+
+//     .top {
+//       stroke: #fff;
+//       stroke-dashoffset: 198px;
+//     }
+
+//     .bottom {
+//       stroke: #fff;
+//       stroke-dashoffset: -138px;
+//     }
+//   }
+
+//   @media (max-width: 768px) {
+//     display: block;
+//     position: absolute;
+//     top: 1rem;
+//     right: 1rem;
+//   }
+// `;
 
 const BackgroundCircle = styled.div`
   width: 80px;

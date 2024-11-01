@@ -116,6 +116,7 @@ const Wrapper = styled.div`
     .arrow-div {
       display: none;
     }
+    padding: 2%;
   }
 `;
 
@@ -125,6 +126,10 @@ const Row = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 2% 4%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 2%;
+  }
 `;
 
 const Left = styled.div`

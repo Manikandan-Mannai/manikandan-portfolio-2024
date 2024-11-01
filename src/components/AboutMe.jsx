@@ -4,7 +4,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const AboutMe = () => {
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -37,7 +36,7 @@ const Container = styled.div`
   max-width: 100vw;
 
   @media (max-width: 768px) {
-    padding: 5% 2%;
+    padding: 2%;
   }
 `;
 

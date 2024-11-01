@@ -41,6 +41,9 @@ export default Services;
 const ServicesContainer = styled.div`
   padding: 2%;
   max-width: 100vw;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -64,7 +67,6 @@ const ServiceCard = styled.div`
   border-left: 5px solid ${(props) => props.color};
   display: flex;
   gap: 1rem;
-
 `;
 
 const IconWrapper = styled.div`
@@ -104,5 +106,4 @@ const ServiceTitle = styled.h3`
 const ServiceDescription = styled.p`
   font-size: 16px;
   color: #555;
-
 `;

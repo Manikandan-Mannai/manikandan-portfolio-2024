@@ -207,9 +207,8 @@ const Heading = styled.h1`
   margin-bottom: 1rem;
   @media (max-width: 768px) {
     font-size: 1.5rem;
-    
   }
-  `;
+`;
 
 const Description = styled.p`
   font-size: 1.2rem;
