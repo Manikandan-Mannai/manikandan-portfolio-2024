@@ -122,7 +122,7 @@ export default Contact;
 const Container = styled.div`
   position: relative;
   min-height: 100vh;
-  width: 100vw;
+  max-width: 100vw;
   padding: 2% 4%;
   text-align: center;
   display: flex;
@@ -133,6 +133,9 @@ const Container = styled.div`
 const Content = styled.div`
   display: flex;
   gap: 2rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Left = styled.div`
@@ -143,6 +146,11 @@ const Left = styled.div`
   border-radius: 6px;
   img {
     width: 200px;
+  }
+  @media (max-width: 768px) {
+    img {
+      display: none;
+    }
   }
 `;
 
@@ -197,11 +205,18 @@ const Heading = styled.h1`
   font-size: 2.5rem;
   font-weight: 500;
   margin-bottom: 1rem;
-`;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    
+  }
+  `;
 
 const Description = styled.p`
   font-size: 1.2rem;
   margin-bottom: 2rem;
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+  }
 `;
 
 const Button = styled.button`

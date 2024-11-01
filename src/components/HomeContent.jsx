@@ -3,21 +3,31 @@ import styled from "styled-components";
 import useSmoothColorTransition from "../hooks/useSmoothColorTransition";
 import MouseScroll from "./Arrow";
 import { useBackgroundColor } from "../context/BackgroundColorContext";
+import TypingComponent from "./TypingComponent";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HomeContent = () => {
-  const { resetColors } = useBackgroundColor(); // Use context to reset colors
+  const { resetColors } = useBackgroundColor();
   const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 5000,
+      easing: "ease-out",
+      once: true,
+    });
+  }, []);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    console.log(scrollPosition);
     if (
       (scrollPosition >= 200 && scrollPosition <= 900) ||
       (scrollPosition >= 2100 && scrollPosition < 4200)
     ) {
-      setIsScrolled(true); // Dark background
+      setIsScrolled(true);
     } else {
-      setIsScrolled(false); // White background
+      setIsScrolled(false);
     }
   };
 
@@ -37,26 +47,28 @@ const HomeContent = () => {
   useSmoothColorTransition(isScrolled, "#fff", "#000");
 
   useEffect(() => {
-    resetColors(); // Reset colors to white on mount
+    resetColors();
   }, [resetColors]);
 
   return (
     <Wrapper className="global-container">
       <Row>
         <Left>
-          <Title>Manikandan</Title>
-          <Designation>
+          <Title data-aos="fade-up">Manikandan</Title>
+          <Designation data-aos="fade-up" data-aos-delay="500">
             <Line />
-            <span>Software Developer</span>
+            <TypingComponent
+              strings={["Web Developer", "Freelancer", "UI/UX Designer"]}
+            />
           </Designation>
-          <Description>
+          <Description data-aos="fade-up" data-aos-delay="1000">
             Are you looking for a reliable and experienced full-stack developer
             who can support your agency in the implementation of complex web
             projects? Then you have come to the right place!
           </Description>
-          <ButtonContainer>
+          <ButtonContainer data-aos="fade-up" data-aos-delay="1500">
             <Button className="black">
-              <span>Contact</span>
+              <span>Resume</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -73,14 +85,14 @@ const HomeContent = () => {
                 <path d="m12 5 7 7-7 7"></path>
               </svg>
             </Button>
-            <Button className="white">Portfolio</Button>
+            <Button className="white animated-border">Portfolio</Button>
           </ButtonContainer>
         </Left>
         <Right>
           <h1>right</h1>
         </Right>
       </Row>
-      <div className="arrow-div">
+      <div className="arrow-div" data-aos="fade" data-aos-delay="2000">
         <MouseScroll />
       </div>
     </Wrapper>
@@ -90,40 +102,55 @@ const HomeContent = () => {
 const Wrapper = styled.div`
   position: relative;
   min-height: calc(100vh - 70px);
-  width: 100vw;
+  max-width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2%;
 
   .arrow-div {
     position: absolute;
     bottom: 55px;
+  }
+
+  @media (max-width: 768px) {
+    .arrow-div {
+      display: none;
+    }
   }
 `;
 
 const Row = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2% 4%;
 `;
 
 const Left = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.55rem;
-  flex-basis: 45%;
+  flex-basis: 60%;
+  min-width: 300px;
 `;
 
 const Right = styled.div`
-  flex-basis: 45%;
+  flex-basis: 35%;
+  min-width: 300px;
+  h1 {
+    text-align: center;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 48px;
-  text-align: center;
-  font-family: "Urbanist", sans-serif;
   text-align: left;
+  font-family: "Urbanist", sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
 `;
 
 const Description = styled.p`
@@ -132,6 +159,11 @@ const Description = styled.p`
   color: rgb(115, 115, 115);
   line-height: 32px;
   text-align: left;
+
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
+    line-height: 26px;
+  }
 `;
 
 const Line = styled.div`
@@ -144,10 +176,15 @@ const Designation = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
   span {
     color: #666666;
     font-size: 22px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
 `;
 
@@ -192,12 +229,15 @@ const Button = styled.button`
   }
 
   &.white {
-    background: #fff;
-    color: #000;
+    box-shadow: none !important;
 
     &:hover {
       background: rgba(255, 255, 255, 0.8);
     }
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
   }
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CustomCursor from "../components/CustomCursor";
 import { projectsRow1, projectsRow2 } from "../constant";
@@ -6,66 +6,81 @@ import { projectsRow1, projectsRow2 } from "../constant";
 const Project = () => {
   const [hoveredProjectIdRow1, setHoveredProjectIdRow1] = useState(null);
   const [hoveredProjectIdRow2, setHoveredProjectIdRow2] = useState(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMouseEnter = (projectId, setHoveredProjectId) => {
+    setHoveredProjectId(projectId);
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = (setHoveredProjectId) => {
+    setHoveredProjectId(null);
+    setIsHovering(false);
+  };
 
   return (
     <Container className="global-container">
+      <CustomCursor isHovering={isHovering} />
+
       <Title>Recent Projects</Title>
 
+      {/* Row 1 */}
       <Content>
         {projectsRow1.map((project) => (
-          <ProjectContent
-            key={project.id}
-            onMouseEnter={() => setHoveredProjectIdRow1(project.id)}
-            onMouseLeave={() => setHoveredProjectIdRow1(null)}
-          >
-            <CustomCursor />
-            <ProjectTitle>
-              {/* <div className="dot"></div> */}
-              {project.title}
-            </ProjectTitle>
-            {hoveredProjectIdRow1 === project.id && (
-              <ProjectName>{project.title}</ProjectName>
-            )}
-            <ImageWrapper background={project.background}>
-              <img src={project.image} alt={project.title} />
-            </ImageWrapper>
-            <TagsContainer>
-              {project.tags.map((tag, index) => (
-                <Tag key={index}>
-                  <span>{tag}</span>
-                </Tag>
-              ))}
-            </TagsContainer>
-          </ProjectContent>
+          <a href={project.webapp} target="blank">
+            <ProjectContent
+              key={project.id}
+              onMouseEnter={() =>
+                handleMouseEnter(project.id, setHoveredProjectIdRow1)
+              }
+              onMouseLeave={() => handleMouseLeave(setHoveredProjectIdRow1)}
+            >
+              <ProjectTitle>{project.title}</ProjectTitle>
+              {hoveredProjectIdRow1 === project.id && (
+                <ProjectName>{project.title}</ProjectName>
+              )}
+              <ImageWrapper background={project.background}>
+                <img src={project.image} alt={project.title} />
+              </ImageWrapper>
+              <TagsContainer>
+                {project.tags.map((tag, index) => (
+                  <Tag key={index}>
+                    <span>{tag}</span>
+                  </Tag>
+                ))}
+              </TagsContainer>
+            </ProjectContent>
+          </a>
         ))}
       </Content>
 
+      {/* Row 2 */}
       <Content>
         {projectsRow2.map((project) => (
-          <ProjectContent
-            key={project.id}
-            onMouseEnter={() => setHoveredProjectIdRow2(project.id)}
-            onMouseLeave={() => setHoveredProjectIdRow2(null)}
-          >
-            <CustomCursor />
-            <ProjectTitle>
-              {/* <div className="dot"></div> */}
-              {project.title}
-            </ProjectTitle>
-            {hoveredProjectIdRow2 === project.id && (
-              <ProjectName>{project.title}</ProjectName>
-            )}
-            <ImageWrapper background={project.background}>
-              <img src={project.image} alt={project.title} />
-            </ImageWrapper>
-            <TagsContainer>
-              {project.tags.map((tag, index) => (
-                <Tag key={index}>
-                  <span>{tag}</span>
-                </Tag>
-              ))}
-            </TagsContainer>
-          </ProjectContent>
+          <a href={project.webapp} target="blank">
+            <ProjectContent
+              key={project.id}
+              onMouseEnter={() =>
+                handleMouseEnter(project.id, setHoveredProjectIdRow2)
+              }
+              onMouseLeave={() => handleMouseLeave(setHoveredProjectIdRow2)}
+            >
+              <ProjectTitle>{project.title}</ProjectTitle>
+              {hoveredProjectIdRow2 === project.id && (
+                <ProjectName>{project.title}</ProjectName>
+              )}
+              <ImageWrapper background={project.background}>
+                <img src={project.image} alt={project.title} />
+              </ImageWrapper>
+              <TagsContainer>
+                {project.tags.map((tag, index) => (
+                  <Tag key={index}>
+                    <span>{tag}</span>
+                  </Tag>
+                ))}
+              </TagsContainer>
+            </ProjectContent>
+          </a>
         ))}
       </Content>
     </Container>
@@ -92,7 +107,13 @@ const Content = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  margin: 2% 0; 
+  margin: 2% 0;
+  a:hover {
+    color: #fff;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h1``;
@@ -105,7 +126,6 @@ const ProjectTitle = styled.h1`
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
- 
 `;
 
 const ProjectName = styled.h1`
@@ -117,10 +137,16 @@ const ProjectName = styled.h1`
   text-transform: uppercase;
   z-index: 9999;
   transition: all 500ms ease-in;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const ProjectContent = styled.div`
   cursor: pointer;
+  @media (max-width: 768px) {
+    margin: 4% 0;
+  }
 `;
 
 const Tag = styled.div`
@@ -129,6 +155,10 @@ const Tag = styled.div`
   background-color: #272721;
   border-radius: 30px;
   margin: 1rem;
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    margin: 0;
+  }
 `;
 
 const TagsContainer = styled.div`
@@ -169,7 +199,7 @@ const ImageWrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 1;
     transition: opacity 0.3s ease; /* Optional for fade effect */
   }
@@ -195,5 +225,13 @@ const ImageWrapper = styled.div`
     transition: transform 0.3s ease;
     z-index: 2; /* Bring the image above the overlay */
   }
-`;
 
+  @media (max-width: 768px) {
+    width: 20rem;
+    height: 12rem;
+
+    img {
+      width: 250px;
+    }
+  }
+`;

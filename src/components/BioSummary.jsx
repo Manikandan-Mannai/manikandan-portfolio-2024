@@ -15,7 +15,6 @@ import ReactImage from "../assets/images/React.svg";
 import SCSS from "../assets/images/SCSS.svg";
 import Typescript from "../assets/images/typescript.svg";
 
-
 const BioSummary = () => {
   return (
     <Container className="global-container">
@@ -24,21 +23,20 @@ const BioSummary = () => {
         <Description>
           I'm a <b>FullStack Web Developer</b> building the Front-end of
           Websites and Web Applications that leads to the success of the overall
-          product. Check out some of my work in the Projects section.I also like
-          sharing content related to the stuff that I have learned over the
+          product. Check out some of my work in the Projects section. I also
+          like sharing content related to the stuff that I have learned over the
           years in Web Development so it can help other people of the Dev
           Community. Feel free to Connect or Follow me on my Linkedin where I
-          post useful content related to Web Development and Programming
+          post useful content related to Web Development and Programming.
         </Description>
 
         <Description style={{ marginTop: "2rem" }}>
           I'm open to Job opportunities where I can contribute, learn and grow.
-          If you have a good opportunity that matches my skills and experience
+          If you have a good opportunity that matches my skills and experience,
           then don't hesitate to contact me.
         </Description>
-        <Title style={{ fontSize: "24px", marginTop: "2rem" }}>
-          Professional Skillset
-        </Title>
+
+        <Title style={{ fontSize: "28px" }}>Professional Skillset</Title>
 
         <SvgContainer>
           <img src={HTML} alt="html" />
@@ -54,7 +52,7 @@ const BioSummary = () => {
           <img src={Java} alt="Java" />
         </SvgContainer>
 
-        <Title style={{ fontSize: "24px", marginTop: "2rem" }}>Tools</Title>
+        <Title style={{ fontSize: "28px" }}>Tools</Title>
         <SvgContainer>
           <img src={figma} alt="figma" />
           <img src={git} alt="git" />
@@ -72,21 +70,50 @@ const Container = styled.div`
   padding: 2% 4%;
   text-align: center;
   min-height: 100vh;
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
   align-items: center;
 `;
 
 const Content = styled.div`
   width: 70%;
   margin: auto;
+
+  @media (max-width: 768px) {
+    width: 90%;
+    padding: 4%;
+    text-align: justify;
+  }
 `;
 
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 46px;
+  margin: 1rem 0;
+  text-align: center;
+  .sub-heading {
+    font-size: 18px !important;
+  }
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 
-const Description = styled.span`
-  display: inline-block;
+  @media (max-width: 480px) {
+    font-size: 28px;
+  }
+`;
+
+const Description = styled.p`
+  font-size: 16px;
+  margin: 0;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 const SvgContainer = styled.div`
@@ -95,9 +122,20 @@ const SvgContainer = styled.div`
   justify-content: center;
   margin-top: 2%;
   gap: 1.55rem;
+  flex-wrap: wrap;
 
   img {
     width: 42px;
     height: 42px;
+
+    @media (max-width: 768px) {
+      width: 36px;
+      height: 36px;
+    }
+
+    @media (max-width: 480px) {
+      width: 30px;
+      height: 30px;
+    }
   }
 `;

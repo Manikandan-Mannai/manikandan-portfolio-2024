@@ -40,10 +40,11 @@ export default Services;
 
 const ServicesContainer = styled.div`
   padding: 2%;
+  max-width: 100vw;
 `;
 
 const Wrapper = styled.div`
-  width: 80%;
+  width: 90%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -63,6 +64,7 @@ const ServiceCard = styled.div`
   border-left: 5px solid ${(props) => props.color};
   display: flex;
   gap: 1rem;
+
 `;
 
 const IconWrapper = styled.div`
@@ -82,6 +84,9 @@ const Title = styled.h1`
   background-size: cover;
   background-position: center;
   text-transform: uppercase;
+  @media (max-width: 768px) {
+    font-size: 4em;
+  }
 `;
 
 const ServiceContent = styled.div``;
@@ -91,9 +96,13 @@ const ServiceTitle = styled.h3`
   font-size: 22px;
   margin: 10px 0;
   color: ${(props) => (props.hovered ? props.color : "#fff")};
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 const ServiceDescription = styled.p`
   font-size: 16px;
   color: #555;
+
 `;

@@ -76,22 +76,22 @@ export const projectsRow1 = [
 // PROJECTS
 export const projectsRow2 = [
   {
-    id: 0,
+    id: 2,
     title: "Taxi Booking",
     image: Taxi,
     tags: ["Full Stack", "SMTP", "PWA"],
     background: Taxibackground,
     github: "https://github.com/Manikandan-Mannai/Genesis-Registration",
-    webapp: "https://genesis-bd1h.onrender.com/",
+    webapp: "https://www.friendstrackpkt.com/",
   },
   {
-    id: 1,
+    id: 3,
     title: "Tesla",
     image: Tesla,
     background: Teslabackground,
     tags: ["Parallax", "Landing Page"],
     github: "https://github.com/Manikandan-Mannai/kllifespace",
-    webapp: "https://kllifespaces.com",
+    webapp: "https://tesla-clone-ca6f6.web.app/",
   },
 ];
 

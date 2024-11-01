@@ -18,7 +18,6 @@ const Experience = () => {
             {experiences.map((exp, index) => (
               <TimelineItem
                 key={exp.id}
-                data-aos={index % 2 === 0 ? "fade-right" : "fade-up"}
               >
                 <Card className="animated-border">
                   <h1 className="role">{exp.role}</h1>
@@ -48,10 +47,11 @@ const Container = styled.div`
   padding: 4% 8%;
   text-align: center;
   min-height: 100vh;
+  max-width: 100vw;
 `;
 
 const Content = styled.div`
-  width: 70%;
+  width: 90%;
   margin: auto;
 `;
 
@@ -79,6 +79,9 @@ const VerticalLine = styled.div`
   height: 100%;
   left: 30%;
   transform: translateX(-50%);
+  @media (max-width: 768px) {
+    left: 0;
+  }
 `;
 
 const TimelineContent = styled.div`
@@ -141,6 +144,10 @@ const PingCircle = styled.span`
       transform: scale(1);
       opacity: 0;
     }
+  }
+
+  @media (max-width: 768px) {
+    left: -2.5%;
   }
 `;
 
