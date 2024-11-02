@@ -7,7 +7,7 @@ const Services = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <ServicesContainer className="global-container">
+    <ServicesContainer className="global-container" id="services">
       <Title>Services</Title>
       <Wrapper>
         {services.map((service) => (

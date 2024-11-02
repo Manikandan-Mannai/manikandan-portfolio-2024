@@ -45,7 +45,7 @@ const Contact = () => {
   };
 
   return (
-    <Container className="global-container">
+    <Container className="global-container" id="contact">
       <Title>Contact Me</Title>
       <Content>
         <Left className="animated-border">
@@ -107,17 +107,23 @@ const Contact = () => {
           <p>iammanikandan.mannai@gmail.com</p>
 
           <span>Digital Workspace:</span>
-          <SocialLinks href="#" target="blank">
+          <SocialLinks
+            href="https://www.instagram.com/manikandan__2612/"
+            target="blank"
+          >
             Instagram 📸 <Underline />
           </SocialLinks>
-          <SocialLinks href="#" target="blank">
+          <SocialLinks
+            href="https://github.com/Manikandan-Mannai"
+            target="blank"
+          >
             Github 🐱 <Underline />
           </SocialLinks>
-          <SocialLinks href="#" target="blank">
+          <SocialLinks
+            href="https://www.linkedin.com/in/manikandan-a-82a14b27b/"
+            target="blank"
+          >
             Linkedin 📝 <Underline />
-          </SocialLinks>
-          <SocialLinks href="#" target="blank">
-            Youtube 📺 <Underline />
           </SocialLinks>
         </Right>
       </Content>

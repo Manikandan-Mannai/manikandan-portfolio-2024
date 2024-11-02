@@ -4,7 +4,7 @@ import { experiences } from "../constant";
 
 const Experience = () => {
   return (
-    <Container className="global-container">
+    <Container className="global-container" id="experience">
       <Content>
         <Title>Current Journey</Title>
         <Description>
@@ -16,9 +16,7 @@ const Experience = () => {
           <PingCircle className="animate-ping" />
           <TimelineContent>
             {experiences.map((exp, index) => (
-              <TimelineItem
-                key={exp.id}
-              >
+              <TimelineItem key={exp.id}>
                 <Card className="animated-border">
                   <h1 className="role">{exp.role}</h1>
                   <p className="designation">

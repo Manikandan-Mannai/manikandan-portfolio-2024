@@ -19,7 +19,7 @@ const Project = () => {
   };
 
   return (
-    <Container className="global-container">
+    <Container className="global-container" id="projects">
       <CustomCursor isHovering={isHovering} />
 
       <Title>Recent Projects</Title>

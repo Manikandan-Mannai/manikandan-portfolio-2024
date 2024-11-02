@@ -6,6 +6,7 @@ import { useBackgroundColor } from "../context/BackgroundColorContext";
 import TypingComponent from "./TypingComponent";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Profile from "../assets/images/profile.jpg";
 
 const HomeContent = () => {
   const { resetColors } = useBackgroundColor();
@@ -89,7 +90,9 @@ const HomeContent = () => {
           </ButtonContainer>
         </Left>
         <Right>
-          <h1>right</h1>
+          <div data-aos="fade" data-aos-delay="2000">
+            <img src={Profile} alt="Manikandan Web developer" />
+          </div>
         </Right>
       </Row>
       <div className="arrow-div" data-aos="fade" data-aos-delay="2000">
@@ -143,8 +146,26 @@ const Left = styled.div`
 const Right = styled.div`
   flex-basis: 35%;
   min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   h1 {
     text-align: center;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 15px;
+    transform: rotate(3deg);
+    transition: transform 0.3s ease-in-out;
+
+    @media (max-width: 768px) {
+      transform: rotate(3deg);
+      border-radius: 10px;
+    }
   }
 `;
 

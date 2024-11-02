@@ -17,7 +17,7 @@ import Typescript from "../assets/images/typescript.svg";
 
 const BioSummary = () => {
   return (
-    <Container className="global-container">
+    <Container className="global-container" id="about">
       <Content>
         <Title>Get to know me!</Title>
         <Description>

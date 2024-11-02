@@ -33,13 +33,13 @@ const Navbar = () => {
     if (!isOpen) {
       setIsOpen(true);
       setTimeout(() => {
-        setIsDelayed(true); // Set delayed visibility
-      }, 800); // Delay in milliseconds
+        setIsDelayed(true);
+      }, 800);
     } else {
       setIsDelayed(false);
       setTimeout(() => {
         setIsOpen(false);
-      }, 800); // Same delay to hide
+      }, 800);
     }
   };
 
@@ -71,11 +71,14 @@ const Navbar = () => {
           <NavLink href="#about">
             About <Underline />
           </NavLink>
-          <NavLink href="#skills">
-            Skills <Underline />
+          <NavLink href="#experience">
+            Experience <Underline />
           </NavLink>
           <NavLink href="#projects">
             Projects <Underline />
+          </NavLink>
+          <NavLink href="#services">
+            Services <Underline />
           </NavLink>
           <Button href="#contact">
             Let's Talk <Underline />
