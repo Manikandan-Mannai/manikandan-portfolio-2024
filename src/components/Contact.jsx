@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Avatar from "../assets/images/Avatar.png";
 import Gif from "../assets/images/gif.gif";
-// import axios from "axios";
+import axios from "axios";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,17 +23,25 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // console.log("Form submitted successfully:", response.data);
 
-    // try {
-    //   //   const response = await axios.post("/send-mail", formData);
-    //   alert("Message sent successfully!");
-    // } catch (error) {
-    //   console.error("Error sending form data:", error);
-    //   alert("Failed to send message. Please try again.");
-    // } finally {
-    // }
-    setIsSubmitting(false);
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/send-mail",
+        formData
+      );
+      console.log("Form submitted successfully:", response.data);
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.error("Error sending form data:", error);
+      alert("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+      });
+    }
   };
 
   return (
