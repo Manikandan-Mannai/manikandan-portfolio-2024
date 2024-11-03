@@ -43,6 +43,13 @@ const Navbar = () => {
     }
   };
 
+  // Close the mobile menu when a link is clicked
+  const handleLinkClick = () => {
+    if (isMobile) {
+      toggleMenu();
+    }
+  };
+
   return (
     <Nav className="global-container">
       <Logo />
@@ -61,10 +68,21 @@ const Navbar = () => {
 
       {isMobile ? (
         <MobileNavLinks isOpen={isOpen} isDelayed={isDelayed}>
-          <NavLink href="#about">About</NavLink>
-          <NavLink href="#skills">Skills</NavLink>
-          <NavLink href="#projects">Projects</NavLink>
-          <Button href="#contact">Let's Talk</Button>
+          <NavLink href="#about" onClick={handleLinkClick}>
+            About
+          </NavLink>
+          <NavLink href="#experience" onClick={handleLinkClick}>
+            Experience
+          </NavLink>
+          <NavLink href="#projects" onClick={handleLinkClick}>
+            Projects
+          </NavLink>
+          <NavLink href="#services" onClick={handleLinkClick}>
+            Services
+          </NavLink>
+          <Button href="#contact" onClick={handleLinkClick}>
+            Let's Talk
+          </Button>
         </MobileNavLinks>
       ) : (
         <DesktopNavLinks>

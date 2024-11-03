@@ -3,14 +3,19 @@ import styled from "styled-components";
 import Avatar from "../assets/images/Avatar.png";
 import Gif from "../assets/images/gif.gif";
 import axios from "axios";
+import Modal from "./Toast";
 
 const Contact = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +35,7 @@ const Contact = () => {
         formData
       );
       console.log("Form submitted successfully:", response.data);
-      alert("Message sent successfully!");
+      setModalOpen(true);
     } catch (error) {
       console.error("Error sending form data:", error);
       alert("Failed to send message. Please try again.");
@@ -46,6 +51,9 @@ const Contact = () => {
 
   return (
     <Container className="global-container" id="contact">
+      {isModalOpen && (
+        <Modal message="Mail successfully sent!" onClose={closeModal} />
+      )}
       <Title>Contact Me</Title>
       <Content>
         <Left className="animated-border">

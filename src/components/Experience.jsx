@@ -1,27 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { experiences } from "../constant";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Experience = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
+
   return (
     <Container className="global-container" id="experience">
       <Content>
-        <Title>Current Journey</Title>
-        <Description>
-          This section tells about my life Journey in the tech and education
+        <Title data-aos="fade-up" data-aos-delay="0">
+          Current Journey
+        </Title>
+        <Description data-aos="fade-up" data-aos-delay="200">
+          This section tells about my life journey in the tech and education
           field
         </Description>
         <TimeLine>
-          <VerticalLine />
-          <PingCircle className="animate-ping" />
+          <VerticalLine data-aos="fade" data-aos-delay="400" />
+          <PingCircle
+            className="animate-ping"
+            data-aos="fade"
+            data-aos-delay="800"
+          />
           <TimelineContent>
             {experiences.map((exp, index) => (
               <TimelineItem key={exp.id}>
-                <Card className="animated-border">
+                <Card
+                  className="animated-border"
+                  data-aos="fade-left"
+                  data-aos-delay={800 + index * 300} 
+                >
                   <h1 className="role">{exp.role}</h1>
                   <p className="designation">
                     At{" "}
-                    <a href={exp.url} target="blank">
+                    <a href={exp.url} target="_blank" rel="noopener noreferrer">
                       {exp.company}
                     </a>
                   </p>
@@ -35,6 +55,7 @@ const Experience = () => {
     </Container>
   );
 };
+
 
 export default Experience;
 

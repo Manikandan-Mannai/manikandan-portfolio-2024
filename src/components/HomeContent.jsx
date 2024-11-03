@@ -141,6 +141,9 @@ const Left = styled.div`
   gap: 1.55rem;
   flex-basis: 60%;
   min-width: 300px;
+  @media (max-width: 768px) {
+   margin-bottom: 2rem;
+  }
 `;
 
 const Right = styled.div`

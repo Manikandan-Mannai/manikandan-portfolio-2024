@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import CustomCursor from "../components/CustomCursor";
 import { projectsRow1, projectsRow2 } from "../constant";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Project = () => {
+    useEffect(() => {
+      AOS.init({
+        duration: 1000,
+        easing: "ease-in-out",
+        once: true,
+      });
+    }, []);
   const [hoveredProjectIdRow1, setHoveredProjectIdRow1] = useState(null);
   const [hoveredProjectIdRow2, setHoveredProjectIdRow2] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -22,7 +31,9 @@ const Project = () => {
     <Container className="global-container" id="projects">
       <CustomCursor isHovering={isHovering} />
 
-      <Title>Recent Projects</Title>
+      <Title data-aos="fade-up" data-aos-delay="0">
+        Recent Projects
+      </Title>
 
       {/* Row 1 */}
       <Content>

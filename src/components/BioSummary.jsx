@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Bootstrap from "../assets/images/bootstrap.svg";
 import CSS from "../assets/images/CSS.svg";
@@ -14,13 +14,26 @@ import postman from "../assets/images/postman.svg";
 import ReactImage from "../assets/images/React.svg";
 import SCSS from "../assets/images/SCSS.svg";
 import Typescript from "../assets/images/typescript.svg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const BioSummary = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Slightly shorter duration for faster transitions
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
+
   return (
     <Container className="global-container" id="about">
       <Content>
-        <Title>Get to know me!</Title>
-        <Description>
+        <Title data-aos="fade-up" data-aos-delay="0">
+          Get to know me!
+        </Title>
+
+        <Description data-aos="fade-up" data-aos-delay="200">
           I'm a <b>FullStack Web Developer</b> building the Front-end of
           Websites and Web Applications that leads to the success of the overall
           product. Check out some of my work in the Projects section. I also
@@ -30,15 +43,25 @@ const BioSummary = () => {
           post useful content related to Web Development and Programming.
         </Description>
 
-        <Description style={{ marginTop: "2rem" }}>
+        <Description
+          style={{ marginTop: "2rem" }}
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
           I'm open to Job opportunities where I can contribute, learn and grow.
           If you have a good opportunity that matches my skills and experience,
           then don't hesitate to contact me.
         </Description>
 
-        <Title style={{ fontSize: "28px" }}>Professional Skillset</Title>
+        <Title
+          style={{ fontSize: "28px" }}
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          Professional Skillset
+        </Title>
 
-        <SvgContainer>
+        <SvgContainer data-aos="fade-up" data-aos-delay="800">
           <img src={HTML} alt="html" />
           <img src={CSS} alt="css" />
           <img src={SCSS} alt="scss" />
@@ -52,8 +75,15 @@ const BioSummary = () => {
           <img src={Java} alt="Java" />
         </SvgContainer>
 
-        <Title style={{ fontSize: "28px" }}>Tools</Title>
-        <SvgContainer>
+        <Title
+          style={{ fontSize: "28px" }}
+          data-aos="fade-up"
+          data-aos-delay="1000"
+        >
+          Tools
+        </Title>
+
+        <SvgContainer data-aos="fade-up" data-aos-delay="1200">
           <img src={figma} alt="figma" />
           <img src={git} alt="git" />
           <img src={postman} alt="postman" />
@@ -62,6 +92,7 @@ const BioSummary = () => {
     </Container>
   );
 };
+;
 
 export default BioSummary;
 
